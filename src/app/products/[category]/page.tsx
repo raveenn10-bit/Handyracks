@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
@@ -56,7 +57,9 @@ export default async function CategoryPage({
         <p className="text-sm sm:text-base text-charcoal/75">{cat.description}</p>
       </div>
 
-      <CatalogueView initialCategory={cat.slug} />
+      <Suspense fallback={<div className="py-12 text-sm text-charcoal/60">Loading category...</div>}>
+        <CatalogueView initialCategory={cat.slug} />
+      </Suspense>
     </div>
   );
 }

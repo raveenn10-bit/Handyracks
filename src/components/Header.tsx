@@ -3,15 +3,28 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Search,
+  MessageCircle,
+  LayoutGrid,
+  ArrowRight,
+  MapPin,
+  ShieldCheck,
+} from "lucide-react";
 import { CATEGORIES } from "@/data/products";
+import { BUSINESS_INFO, buildWhatsAppUrl } from "@/data/business";
 
-const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/products", label: "Products", hasMegaMenu: true },
-  { href: "/commercial-solutions", label: "Commercial Solutions" },
-  { href: "/custom-design", label: "Custom Designs" },
+const SECONDARY_LINKS = [
+  { href: "/products", label: "Full Catalogue" },
+  { href: "/commercial-solutions", label: "Commercial Racks" },
+  { href: "/products/floating-shelves", label: "Floating Shelves" },
+  { href: "/products/decorative-wall-shelves", label: "Wall Shelves" },
+  { href: "/products/bookshelves", label: "Book Trees" },
+  { href: "/custom-design", label: "Custom Design" },
   { href: "/projects", label: "Projects" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -19,188 +32,216 @@ const NAV_LINKS = [
 
 export default function Header() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
+  const router = useRouter();
+  const [searchValue, setSearchValue] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     setMobileOpen(false);
     setMegaMenuOpen(false);
   }, [pathname]);
 
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const q = searchValue.trim();
+    if (q) {
+      router.push(`/products?q=${encodeURIComponent(q)}`);
+    } else {
+      router.push("/products");
+    }
+  };
+
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 border-b border-soft-beige ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm py-2.5"
-          : "bg-warm-ivory/95 backdrop-blur-sm py-3.5"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-        {/* Original Brand Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-3 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-natural-oak rounded"
-          aria-label="Handy Racks Home"
-        >
-          <div className="relative h-10 w-10 sm:h-11 sm:w-11 shrink-0">
-            <Image
-              src="/images/brand/handy-racks-logo.png"
-              alt="Handy Racks Logo"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-          <div className="leading-tight">
-            <span className="font-heading font-bold text-lg sm:text-xl tracking-tight text-charcoal block">
-              Handy Racks
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.18em] text-natural-oak font-medium hidden sm:block">
-              Custom Shelving &amp; Display
+    <header className="sticky top-0 z-50 w-full shadow-sm">
+      {/* Tier 1: Top Utility Bar */}
+      <div className="bg-charcoal text-warm-ivory/90 text-[11px] sm:text-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3 truncate">
+            <span className="inline-flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-natural-oak shrink-0" />
+              <span className="truncate">
+                Customized Shelving &amp; Display Racks &bull; Angoda, Sri Lanka
+              </span>
             </span>
           </div>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-6" aria-label="Primary Navigation">
-          {NAV_LINKS.map((link) => {
-            const isActive =
-              link.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(link.href);
-
-            if (link.hasMegaMenu) {
-              return (
-                <div
-                  key={link.href}
-                  className="relative"
-                  onMouseEnter={() => setMegaMenuOpen(true)}
-                  onMouseLeave={() => setMegaMenuOpen(false)}
-                >
-                  <Link
-                    href={link.href}
-                    className={`inline-flex items-center gap-1 text-sm font-medium transition-colors py-2 ${
-                      isActive
-                        ? "text-natural-oak"
-                        : "text-charcoal/80 hover:text-charcoal"
-                    }`}
-                    aria-expanded={megaMenuOpen}
-                  >
-                    {link.label}
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                        megaMenuOpen ? "rotate-180" : ""
-                      }`}
-                    />
-                  </Link>
-
-                  {/* Mega Menu Dropdown */}
-                  {megaMenuOpen && (
-                    <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 w-[680px]">
-                      <div className="bg-white border border-soft-beige shadow-xl p-6 grid grid-cols-2 gap-4">
-                        {CATEGORIES.map((cat) => (
-                          <Link
-                            key={cat.slug}
-                            href={`/products/${cat.slug}`}
-                            className="group flex items-center gap-3 p-2 hover:bg-warm-ivory transition-colors"
-                          >
-                            <div className="relative w-12 h-12 bg-white border border-soft-beige shrink-0 overflow-hidden">
-                              <Image
-                                src={cat.coverImage}
-                                alt={cat.name}
-                                fill
-                                className="object-cover group-hover:scale-105 transition-transform duration-300"
-                              />
-                            </div>
-                            <div className="min-w-0">
-                              <p className="text-sm font-semibold text-charcoal group-hover:text-natural-oak transition-colors truncate">
-                                {cat.name}
-                              </p>
-                              <p className="text-xs text-charcoal/60 capitalize">
-                                {cat.segment}
-                              </p>
-                            </div>
-                          </Link>
-                        ))}
-                        <div className="col-span-2 pt-3 border-t border-soft-beige flex items-center justify-between">
-                          <span className="text-xs text-charcoal/60">
-                            All designs customisable to your dimensions &amp; finish
-                          </span>
-                          <Link
-                            href="/products"
-                            className="inline-flex items-center gap-1.5 text-xs font-semibold text-natural-oak hover:text-charcoal transition-colors"
-                          >
-                            View Full Catalogue <ArrowRight className="w-3.5 h-3.5" />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            }
-
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium transition-colors py-2 ${
-                  isActive
-                    ? "text-natural-oak border-b-2 border-natural-oak"
-                    : "text-charcoal/80 hover:text-charcoal"
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* Primary CTA + Mobile Hamburger */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="/custom-design"
-            className="hidden sm:inline-flex items-center gap-2 bg-charcoal text-warm-ivory hover:bg-natural-oak transition-colors text-xs sm:text-sm font-medium px-4 py-2.5 tracking-wide"
-          >
-            Get a Custom Quote
-          </Link>
-
-          <button
-            type="button"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 text-charcoal hover:text-natural-oak focus:outline-none focus-visible:ring-2 focus-visible:ring-natural-oak"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="hidden md:flex items-center gap-4 shrink-0">
+            <span className="inline-flex items-center gap-1.5 text-warm-ivory/80">
+              <ShieldCheck className="w-3.5 h-3.5 text-brand-green" />
+              Direct Workshop Quality
+            </span>
+            <a
+              href={BUSINESS_INFO.whatsappBaseUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-brand-green hover:underline"
+            >
+              WhatsApp: {BUSINESS_INFO.whatsappDisplay}
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
-      {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-soft-beige px-4 py-6 space-y-4 max-h-[85vh] overflow-y-auto">
-          <nav className="flex flex-col space-y-2" aria-label="Mobile Navigation">
-            {NAV_LINKS.map((link) => {
-              const isActive =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(link.href);
+      {/* Tier 2: Main Clean White Header with Centered Pill Search */}
+      <div className="bg-white border-b border-soft-beige/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+          {/* Original Handy Racks Logo */}
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-natural-oak rounded-lg"
+            aria-label="Handy Racks Home"
+          >
+            <div className="relative h-10 w-10 sm:h-11 sm:w-11 shrink-0">
+              <Image
+                src="/images/brand/handy-racks-logo.png"
+                alt="Handy Racks Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <div className="leading-tight">
+              <span className="font-heading font-extrabold text-lg sm:text-xl tracking-tight text-charcoal block">
+                HANDY RACKS
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.16em] text-natural-oak font-semibold hidden sm:block">
+                Custom Furniture &amp; Shelving
+              </span>
+            </div>
+          </Link>
+
+          {/* Centered Rounded Search Bar */}
+          <form
+            onSubmit={handleSearchSubmit}
+            className="hidden md:flex flex-1 max-w-xl items-center bg-[#F6F4EF] border border-soft-beige rounded-full pl-4 pr-1.5 py-1 focus-within:border-natural-oak focus-within:bg-white transition-colors"
+          >
+            <Search className="w-4 h-4 text-charcoal/45 shrink-0 mr-2.5" />
+            <input
+              type="search"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Search floating shelves, gold retail racks, book trees..."
+              aria-label="Search Handy Racks catalogue"
+              className="w-full bg-transparent text-sm text-charcoal placeholder:text-charcoal/45 focus:outline-none py-1.5"
+            />
+            <button
+              type="submit"
+              className="bg-charcoal hover:bg-natural-oak text-white text-xs font-semibold px-4 py-2 rounded-full transition-colors shrink-0"
+            >
+              Search
+            </button>
+          </form>
+
+          {/* Right Action Controls (Showcase-Only: Custom Quote + WhatsApp) */}
+          <div className="flex items-center gap-2.5 shrink-0">
+            <Link
+              href="/custom-design"
+              className="hidden sm:inline-flex items-center gap-1.5 bg-charcoal hover:bg-natural-oak text-white text-xs font-semibold px-4 py-2.5 rounded-full transition-colors"
+            >
+              Get Custom Quote
+            </Link>
+            <a
+              href={buildWhatsAppUrl(
+                "Hello Handy Racks! I would like to request a custom furniture quotation."
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp Handy Racks"
+              className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#25D366]/15 text-[#1da851] hover:bg-[#25D366] hover:text-white transition-colors"
+            >
+              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="lg:hidden p-2 rounded-lg text-charcoal hover:bg-[#F6F4EF] focus:outline-none"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Tier 3: Clean Secondary Category Navigation Bar */}
+      <div className="hidden lg:block bg-charcoal text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-6">
+          {/* All Categories Mega Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setMegaMenuOpen(true)}
+            onMouseLeave={() => setMegaMenuOpen(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setMegaMenuOpen(!megaMenuOpen)}
+              className="inline-flex items-center gap-2 bg-natural-oak hover:bg-gold-accent text-white text-xs font-semibold px-4 py-3 transition-colors"
+              aria-expanded={megaMenuOpen}
+            >
+              <LayoutGrid className="w-4 h-4" />
+              All Categories
+              <ChevronDown
+                className={`w-3.5 h-3.5 transition-transform ${
+                  megaMenuOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {megaMenuOpen && (
+              <div className="absolute left-0 top-full w-[660px] bg-white text-charcoal border border-soft-beige shadow-2xl rounded-b-2xl p-6 grid grid-cols-2 gap-3">
+                {CATEGORIES.map((cat) => (
+                  <Link
+                    key={cat.slug}
+                    href={`/products/${cat.slug}`}
+                    className="group flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#F6F4EF] transition-colors"
+                  >
+                    <div className="relative w-12 h-12 rounded-lg bg-white border border-soft-beige/80 shrink-0 overflow-hidden">
+                      <Image
+                        src={cat.coverImage}
+                        alt={cat.name}
+                        fill
+                        className="object-contain p-1 group-hover:scale-105 transition-transform"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-charcoal group-hover:text-natural-oak truncate">
+                        {cat.name}
+                      </p>
+                      <p className="text-[11px] text-charcoal/55 capitalize">
+                        {cat.segment}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+                <div className="col-span-2 pt-3 mt-1 border-t border-soft-beige flex items-center justify-between">
+                  <span className="text-xs text-charcoal/60">
+                    Every design can be customized to your exact dimensions
+                  </span>
+                  <Link
+                    href="/products"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-natural-oak hover:text-charcoal"
+                  >
+                    View All Designs <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Horizontal Nav Links */}
+          <nav className="flex items-center gap-6 overflow-x-auto no-scrollbar" aria-label="Category Navigation">
+            {SECONDARY_LINKS.map((link) => {
+              const active = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`py-2.5 px-3 text-base font-medium transition-colors ${
-                    isActive
-                      ? "bg-warm-ivory text-natural-oak"
-                      : "text-charcoal hover:bg-warm-ivory"
+                  className={`text-xs font-medium py-3 whitespace-nowrap transition-colors ${
+                    active
+                      ? "text-gold-accent font-semibold"
+                      : "text-warm-ivory/85 hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -208,32 +249,54 @@ export default function Header() {
               );
             })}
           </nav>
+        </div>
+      </div>
 
-          <div className="pt-4 border-t border-soft-beige">
-            <p className="text-xs uppercase tracking-wider text-charcoal/50 mb-3 px-3">
-              Categories
-            </p>
-            <div className="grid grid-cols-2 gap-2 px-1">
-              {CATEGORIES.map((cat) => (
-                <Link
-                  key={cat.slug}
-                  href={`/products/${cat.slug}`}
-                  className="text-xs font-medium text-charcoal/80 hover:text-natural-oak py-1.5 px-2 bg-warm-ivory/60"
-                >
-                  {cat.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div className="pt-4">
-            <Link
-              href="/custom-design"
-              className="w-full inline-flex justify-center items-center gap-2 bg-charcoal text-warm-ivory py-3 px-4 text-sm font-medium"
+      {/* Mobile Drawer */}
+      {mobileOpen && (
+        <div className="lg:hidden bg-white border-b border-soft-beige px-4 py-5 space-y-4 max-h-[82vh] overflow-y-auto shadow-xl">
+          <form
+            onSubmit={handleSearchSubmit}
+            className="flex items-center bg-[#F6F4EF] border border-soft-beige rounded-full pl-3.5 pr-1 py-1"
+          >
+            <Search className="w-4 h-4 text-charcoal/45 mr-2" />
+            <input
+              type="search"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Search shelves or display racks..."
+              className="w-full bg-transparent text-sm focus:outline-none py-1"
+            />
+            <button
+              type="submit"
+              className="bg-charcoal text-white text-xs font-semibold px-3.5 py-1.5 rounded-full"
             >
-              Get a Custom Quote <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+              Go
+            </button>
+          </form>
+
+          <nav className="grid grid-cols-2 gap-2">
+            {SECONDARY_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`px-3 py-2.5 rounded-xl text-sm font-medium ${
+                  pathname === link.href
+                    ? "bg-charcoal text-white"
+                    : "bg-[#F6F4EF] text-charcoal"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <Link
+            href="/custom-design"
+            className="w-full inline-flex items-center justify-center gap-2 bg-natural-oak text-white py-3 rounded-full text-sm font-semibold"
+          >
+            Get a Custom Quote <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       )}
     </header>

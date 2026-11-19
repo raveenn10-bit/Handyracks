@@ -80,14 +80,11 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
-      <body className="min-h-screen bg-warm-ivory text-charcoal antialiased flex flex-col">
+      <body className="min-h-screen bg-[#F6F4EF] text-charcoal antialiased flex flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
-        <div className="bg-charcoal text-warm-ivory text-xs sm:text-sm py-2 px-4 text-center tracking-wide">
-          {BUSINESS_INFO.tagline}
-        </div>
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

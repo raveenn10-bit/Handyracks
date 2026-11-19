@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import CatalogueView from "@/components/CatalogueView";
 
 export const metadata: Metadata = {
@@ -21,7 +22,9 @@ export default function ProductsPage() {
           Explore our residential catalogue and commercial retail display collection. All designs can be customized to your dimensions and finish.
         </p>
       </div>
-      <CatalogueView />
+      <Suspense fallback={<div className="py-12 text-sm text-charcoal/60">Loading catalogue...</div>}>
+        <CatalogueView />
+      </Suspense>
     </div>
   );
 }
