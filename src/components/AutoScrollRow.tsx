@@ -99,6 +99,7 @@ export default function AutoScrollRow({
   return (
     <div
       ref={ref}
+      data-anim-grid
       className={`no-scrollbar ${bleedClassName} flex gap-4 overflow-x-auto snap-x snap-mandatory sm:mx-0 sm:px-0 sm:grid sm:gap-5 sm:overflow-visible sm:snap-none ${gridClassName}`}
     >
       {React.Children.map(children, (child) => (

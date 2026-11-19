@@ -5,6 +5,8 @@ import { BUSINESS_INFO } from "@/data/business";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import { PageAnimations } from "@/components/animations/PageAnimations";
+import { ScrollProgressBar } from "@/components/animations/ScrollProgressBar";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -85,10 +87,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
+        <ScrollProgressBar />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
         <FloatingWhatsApp />
+        <PageAnimations />
       </body>
     </html>
   );

@@ -3,8 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "motion/react";
 import {
   ArrowRight,
@@ -29,7 +27,6 @@ import ProductCard from "./ProductCard";
 import WhatsAppIcon from "./WhatsAppIcon";
 import AutoScrollRow from "./AutoScrollRow";
 
-gsap.registerPlugin(ScrollTrigger);
 
 const HERO_SLIDES = [
   {
@@ -146,28 +143,7 @@ export default function HomeClient() {
     return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced || !rootRef.current) return;
-
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>(".reveal-section").forEach((el) => {
-        gsap.from(el, {
-          y: 24,
-          opacity: 0,
-          duration: 0.65,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 88%",
-            once: true,
-          },
-        });
-      });
-    }, rootRef);
-
-    return () => ctx.revert();
-  }, []);
+  // Scroll reveal animations are handled site-wide by <PageAnimations /> in the root layout.
 
   const slide = HERO_SLIDES[heroIdx];
   const residentialCatalogue = PRODUCTS.filter((p) => p.segment === "residential").slice(0, 8);
