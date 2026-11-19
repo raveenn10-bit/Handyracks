@@ -503,9 +503,9 @@ export default function HomeClient() {
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/55 to-charcoal/10" />
             <div className="relative z-10 space-y-1.5">
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gold-accent">
+              <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-[#F3D58A] bg-charcoal/75 backdrop-blur-sm border border-[#F3D58A]/30 px-3 py-1 rounded-full">
                 Home Upgrade
               </span>
               <h3 className="font-heading font-bold text-2xl">
@@ -528,9 +528,9 @@ export default function HomeClient() {
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/55 to-charcoal/10" />
             <div className="relative z-10 space-y-1.5">
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gold-accent">
+              <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-[#F3D58A] bg-charcoal/75 backdrop-blur-sm border border-[#F3D58A]/30 px-3 py-1 rounded-full">
                 Retail Collection
               </span>
               <h3 className="font-heading font-bold text-2xl">
