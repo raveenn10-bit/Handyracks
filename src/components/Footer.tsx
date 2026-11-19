@@ -1,18 +1,19 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Phone, Mail, ExternalLink } from "lucide-react";
+import { Phone, ExternalLink } from "lucide-react";
 import { BUSINESS_INFO } from "@/data/business";
 import { CATEGORIES } from "@/data/products";
 import WhatsAppIcon from "./WhatsAppIcon";
+import { FacebookIcon, GoogleMapsIcon, GmailIcon } from "./SocialIcons";
 
 export default function Footer() {
   return (
     <footer className="bg-charcoal text-warm-ivory border-t border-charcoal/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 lg:gap-10">
           {/* Brand Column */}
-          <div className="space-y-4">
+          <div className="col-span-2 lg:col-span-1 space-y-4">
             <div className="flex items-center gap-3">
               <div className="relative h-10 w-10 bg-white rounded-sm p-1 shrink-0">
                 <Image
@@ -40,20 +41,40 @@ export default function Footer() {
                 href={BUSINESS_INFO.facebookUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-medium px-3 py-1.5 border border-warm-ivory/25 hover:border-natural-oak hover:text-natural-oak transition-colors inline-flex items-center gap-1.5"
+                aria-label="Handy Racks on Facebook"
+                className="w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-110 transition-transform"
               >
-                Facebook ({BUSINESS_INFO.facebookFollowers})
-                <ExternalLink className="w-3 h-3" />
+                <FacebookIcon className="w-11 h-11" />
               </a>
               <a
                 href={BUSINESS_INFO.whatsappBaseUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-medium px-3 py-1.5 bg-brand-green text-charcoal hover:opacity-90 transition-opacity inline-flex items-center gap-1.5"
+                aria-label="Chat with Handy Racks on WhatsApp"
+                className="w-11 h-11 rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
               >
-                WhatsApp
+                <WhatsAppIcon className="w-11 h-11" />
+              </a>
+              <a
+                href={BUSINESS_INFO.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Handy Racks on Google Maps"
+                className="w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+              >
+                <GoogleMapsIcon className="w-6 h-6" />
+              </a>
+              <a
+                href={`mailto:${BUSINESS_INFO.email}`}
+                aria-label="Email Handy Racks"
+                className="w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+              >
+                <GmailIcon className="w-6 h-6" />
               </a>
             </div>
+            <p className="text-xs text-warm-ivory/60">
+              {BUSINESS_INFO.facebookFollowers} followers on Facebook &middot; {BUSINESS_INFO.facebookRecommendations}
+            </p>
           </div>
 
           {/* Quick Links */}
@@ -123,14 +144,14 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="col-span-2 lg:col-span-1">
             <h4 className="font-heading font-semibold text-sm uppercase tracking-wider text-white mb-4">
               Contact &amp; Workshop
             </h4>
             <ul className="space-y-3 text-sm text-warm-ivory/75">
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-natural-oak shrink-0 mt-0.5" />
-                <span>{BUSINESS_INFO.address}</span>
+                <GoogleMapsIcon className="w-5 h-5 shrink-0" />
+                <a href={BUSINESS_INFO.googleMapsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-natural-oak transition-colors">{BUSINESS_INFO.address}</a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-natural-oak shrink-0" />
@@ -153,7 +174,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-natural-oak shrink-0" />
+                <GmailIcon className="w-5 h-5 shrink-0" />
                 <a
                   href={`mailto:${BUSINESS_INFO.email}`}
                   className="hover:text-natural-oak transition-colors"
@@ -161,21 +182,32 @@ export default function Footer() {
                   {BUSINESS_INFO.email}
                 </a>
               </li>
-              <li className="pt-1">
-                <a
-                  href={BUSINESS_INFO.googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-gold-accent hover:underline"
-                >
-                  Get Directions on Google Maps <ExternalLink className="w-3 h-3" />
-                </a>
-              </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-warm-ivory/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-warm-ivory/60">
+        {/* Google Map */}
+        <div className="mt-12 rounded-2xl overflow-hidden border border-warm-ivory/15 bg-white/5">
+          <iframe
+            title="Handy Racks workshop location on Google Maps"
+            src={BUSINESS_INFO.googleMapsEmbedUrl}
+            className="w-full h-56 sm:h-72 block"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+          <a
+            href={BUSINESS_INFO.googleMapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+          >
+            <GoogleMapsIcon className="w-4 h-4" />
+            Get Directions on Google Maps <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
+        <div className="mt-10 pt-8 border-t border-warm-ivory/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-warm-ivory/60">
           <p>&copy; {new Date().getFullYear()} {BUSINESS_INFO.name}. All rights reserved.</p>
           <p>{BUSINESS_INFO.developerCredit}</p>
         </div>
