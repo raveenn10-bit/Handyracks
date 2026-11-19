@@ -449,10 +449,10 @@ export default function HomeClient() {
       </section>
 
       {/* 7. CLEAN EDITORIAL SPLIT SECTION (Fixed Contrast & Crisp Spacing) */}
-      <section className="reveal-section bg-[#ECE6DA] border-y border-soft-beige py-16 lg:py-20">
+      <section className="reveal-section bg-leaf-gradient border-y border-leaf-dark/20 py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-5 lg:sticky lg:top-36 space-y-4">
-            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-natural-oak">
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-leaf-dark">
               Discover Handy Racks
             </p>
             <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-charcoal leading-[1.12] tracking-tight">
@@ -652,16 +652,16 @@ export default function HomeClient() {
 
       {/* 10. INSTANT WHATSAPP QUOTATION BANNER (Tondel-Inspired Dark CTA) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="bg-charcoal text-white rounded-3xl p-8 sm:p-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+        <div className="bg-leaf-gradient-dark text-white rounded-3xl p-8 sm:p-12 shadow-lg flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
           <div className="space-y-3 max-w-xl">
-            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand-green">
+            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-leaf-light">
               <MessageCircle className="w-4 h-4" />
               Direct Workshop Support
             </span>
             <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-white">
               Order &amp; Quote Instantly on WhatsApp
             </h2>
-            <p className="text-sm text-warm-ivory/75 leading-relaxed">
+            <p className="text-sm text-white/85 leading-relaxed">
               Send your measurements, room sketch, or commercial showroom requirements directly to Handy Racks ({BUSINESS_INFO.whatsappDisplay}).
             </p>
           </div>
@@ -687,7 +687,7 @@ export default function HomeClient() {
               href={BUSINESS_INFO.facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 border border-white/25 hover:border-white text-white px-5 py-3.5 rounded-full text-xs font-semibold transition-colors"
+              className="inline-flex items-center gap-1.5 bg-charcoal hover:bg-leaf-dark text-white px-5 py-3.5 rounded-full text-xs font-semibold transition-colors"
             >
               Facebook ({BUSINESS_INFO.facebookFollowers})
               <ExternalLink className="w-3.5 h-3.5" />

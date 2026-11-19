@@ -80,7 +80,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
-      <body className="min-h-screen bg-[#F6F4EF] text-charcoal antialiased flex flex-col">
+      <body className="min-h-screen bg-transparent text-charcoal antialiased flex flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}

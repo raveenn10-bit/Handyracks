@@ -10,20 +10,33 @@
   --brand-green: #91C43C;
   --brand-blue: #2875C7;
   --border-beige: #E8DFD2;
+  --leaf-dark: #336A29;
+  --leaf-light: #EAEF9D;
+  --leaf-gradient: linear-gradient(135deg, #EAEF9D 0%, #336A29 100%);
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #FAF8F3;
+  background-color: #EDEDED;
   color: #242824;
 }
 
 body {
-  background-color: #FAF8F3;
+  background-color: transparent;
   color: #242824;
   font-family: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Soft silver page background (fixed layer so it also works on iOS) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #EDEDED url("/images/bg-silver.jpg") center / cover no-repeat;
+  pointer-events: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
