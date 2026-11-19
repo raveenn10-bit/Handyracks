@@ -31,33 +31,33 @@ import AutoScrollRow from "./AutoScrollRow";
 const HERO_SLIDES = [
   {
     id: 0,
-    eyebrow: "CUSTOM SHELVING • SRI LANKA",
+    eyebrow: "Made in our Angoda workshop",
     leftTitle: "Residential Craft",
-    headline: "Beautiful Spaces. Built Around You.",
+    headline: "Shelves made to fit your wall.",
     subtitle:
-      "Floating shelves in Melamine Coated MDF, geometric wall cubicles, and sculptural Book Trees crafted to your exact dimensions.",
+      "Floating shelves, wall cubes and book trees, cut to the size you give us. Send your measurements on WhatsApp and we'll quote you.",
     image: "/images/hero/hero-residential-living.webp",
     ctaHref: "/products/floating-shelves",
     ctaLabel: "Explore Residential",
   },
   {
     id: 1,
-    eyebrow: "LUXURY RETAIL FIT-OUTS",
+    eyebrow: "For shops & showrooms",
     leftTitle: "Gold Display Series",
-    headline: "Designed to Display. Built for Business.",
+    headline: "Display racks for your shop.",
     subtitle:
-      "Brushed gold metal wall racks, freestanding boutique units, and centre tables tailored for Sri Lankan retail showrooms.",
+      "Gold and black metal racks, wall units and centre tables. We've fitted out boutiques, ceramic shops and salons around Colombo.",
     image: "/images/hero/hero-commercial-gold-showroom.webp",
     ctaHref: "/commercial-solutions",
     ctaLabel: "Explore Commercial",
   },
   {
     id: 2,
-    eyebrow: "BLACK STEEL & NATURAL WOOD",
+    eyebrow: "Steel frame + wood shelves",
     leftTitle: "Studio & Storage",
-    headline: "Architectural Racks. Endless Configurations.",
+    headline: "Tell us the size. We'll build it.",
     subtitle:
-      "Powder-coated matte black steel frames paired with warm Natural Oak and Rich Teak shelves for offices, cafés, and stores.",
+      "Black powder-coated frames with oak or teak shelves, for offices, cafés and stores. Any height, any number of shelves.",
     image: "/images/hero/hero-black-metal-studio.webp",
     ctaHref: "/custom-design",
     ctaLabel: "Request Custom Quote",
@@ -68,43 +68,43 @@ const HERO_SLIDES = [
 const TrustWhatsAppIcon = (_props: { className?: string }) => <WhatsAppIcon className="w-7 h-7" />;
 
 const TRUST_FEATURES = [
-  { icon: Ruler, title: "Custom Dimensions", desc: "Built to your exact wall or floor size" },
-  { icon: Palette, title: "Curated Finishes", desc: "Oak, Teak, White, Black & Gold Metal" },
-  { icon: Building2, title: "Home & Commercial", desc: "Apartments to full retail showrooms" },
-  { icon: TrustWhatsAppIcon, title: "Instant WhatsApp", desc: "Direct quotations at +94 70 704 8888" },
-  { icon: Truck, title: "Angoda Workshop", desc: "Crafted locally in Sri Lanka" },
+  { icon: Ruler, title: "Any size", desc: "Made to your wall or floor measurements" },
+  { icon: Palette, title: "5 finishes", desc: "Oak, teak, white, black and gold metal" },
+  { icon: Building2, title: "Homes & shops", desc: "From one shelf to a full shop fit-out" },
+  { icon: TrustWhatsAppIcon, title: "Quotes on WhatsApp", desc: "Message us on 070 704 8888" },
+  { icon: Truck, title: "Angoda workshop", desc: "Made by our own team, not imported" },
 ];
 
 const COMMERCIAL_SECTORS = [
-  { num: "01", title: "Clothing Boutiques", desc: "Gold & black garment rails and nesting display tables" },
-  { num: "02", title: "Homeware & Ceramics", desc: "High-load multi-tier wall shelving and centre islands" },
-  { num: "03", title: "Cosmetics & Salons", desc: "Brushed gold guard-rail stands with crisp white tiers" },
-  { num: "04", title: "Flower & Gift Shops", desc: "Teak & matte black steel tiered merchandising racks" },
-  { num: "05", title: "Retail Showrooms", desc: "Architectural open geometric dividers & stock cabinets" },
-  { num: "06", title: "Offices & Studios", desc: "Modular wall storage, bookshelves & foldable workstations" },
+  { num: "01", title: "Clothing Boutiques", desc: "Garment rails and nesting display tables" },
+  { num: "02", title: "Homeware & Ceramics", desc: "Strong wall shelving and centre display tables" },
+  { num: "03", title: "Cosmetics & Salons", desc: "Gold stands with white shelves for products" },
+  { num: "04", title: "Flower & Gift Shops", desc: "Tiered teak and black steel racks" },
+  { num: "05", title: "Retail Showrooms", desc: "Open dividers and stock cabinets" },
+  { num: "06", title: "Offices & Studios", desc: "Wall storage, bookshelves and foldable desks" },
 ];
 
 const EDITORIAL_CARDS = [
   {
-    step: "01 / 03",
-    title: "Exact-Fit Residential Shelving",
-    desc: "From 40cm to 120cm+ floating shelves in Quality Melamine Coated MDF to quarter-circle corner units and 180cm vertical Handy Shelves.",
+    step: "Homes",
+    title: "Shelves for your home",
+    desc: "Floating shelves from 40cm to 120cm and longer, corner units, and 180cm standing shelves. All in melamine-coated MDF that wipes clean.",
     image: "/images/products/floating-shelf/floating-shelf-oak.webp",
     href: "/products/floating-shelves",
     cta: "Browse Wall Shelves",
   },
   {
-    step: "02 / 03",
-    title: "Showroom-Grade Gold & Black Racks",
-    desc: "Precision-welded brushed gold and matte black steel frames built to elevate Sri Lankan retail stores, boutiques, and display spaces.",
+    step: "Shops",
+    title: "Gold & black racks for shops",
+    desc: "Welded steel frames in brushed gold or matte black. Strong enough for ceramics and heavy stock, and they look good doing it.",
     image: "/images/products/commercial-racks/gold-frame-display-shelving-unit.webp",
     href: "/commercial-solutions",
     cta: "View Commercial Racks",
   },
   {
-    step: "03 / 03",
-    title: "Direct WhatsApp Custom Quotations",
-    desc: "Skip complex checkout forms. Pick a design, enter your width, height, depth, and finish, and send your spec straight to our workshop.",
+    step: "Ordering",
+    title: "How ordering works",
+    desc: "Pick a design, tell us the width, height, depth and colour, and send it on WhatsApp. We reply with a price and how long it will take.",
     image: "/images/products/book-tree/book-tree-oak.webp",
     href: "/custom-design",
     cta: "Start Custom Quote",
@@ -114,19 +114,19 @@ const EDITORIAL_CARDS = [
 const FAQS = [
   {
     q: "Can I customize lengths, heights, and depths for any design?",
-    a: "Yes. Every residential shelf and commercial display rack can be manufactured to your exact dimensions. Use our Custom Design form or click WhatsApp on any product.",
+    a: "Yes. Everything we make is cut to order, so any width, height or depth is fine. Use the Custom Design form or tap WhatsApp on any product.",
   },
   {
     q: "What finishes do you offer?",
-    a: "We offer Matte White, Natural Oak, Rich Teak, and Matte Black board finishes, plus Brushed Gold Metal and Matte Black Powder-Coated Metal frames for commercial racks.",
+    a: "Boards come in matte white, natural oak, teak and matte black. Metal frames come in brushed gold or matte black powder coat.",
   },
   {
     q: "How does ordering and quotation work?",
-    a: "Handy Racks is a custom manufacturing showcase. Select your preferred design and dimensions, then tap 'Request Quote' to send your pre-filled specification directly via WhatsApp to +94 70 704 8888.",
+    a: "Choose a design and your sizes on this site, then tap 'Request Quote'. It opens WhatsApp with your details filled in, so you just press send. We'll reply with a price.",
   },
   {
     q: "Do you handle full retail shop and showroom shelving setups?",
-    a: "Yes. We manufacture wall racks, freestanding display units, garment rails, centre display tables, and gondola shelving for commercial interiors across Sri Lanka.",
+    a: "Yes. We make wall racks, standing display units, garment rails, centre tables and gondola shelving, and we can do a whole shop at once.",
   },
 ];
 
@@ -290,10 +290,10 @@ export default function HomeClient() {
         <div className="flex items-end justify-between gap-4 mb-8">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-natural-oak mb-1">
-              Browse Faster
+              Shop by type
             </p>
             <h2 className="font-heading font-bold text-2xl sm:text-3xl text-charcoal">
-              Explore by Category
+              What we make
             </h2>
           </div>
           <Link
@@ -334,7 +334,7 @@ export default function HomeClient() {
           <div className="flex items-end justify-between gap-4 mb-7">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-natural-oak mb-1">
-                WhatsApp Catalogue
+                For your home
               </p>
               <h2 className="font-heading font-bold text-2xl sm:text-3xl text-charcoal">
                 Residential Shelving &amp; Furniture
@@ -362,10 +362,10 @@ export default function HomeClient() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-2 max-w-2xl">
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gold-accent">
-                Commercial &bull; Retail Showrooms
+                For shops
               </p>
               <h2 className="font-heading font-bold text-2xl sm:text-4xl text-white">
-                Custom Display Systems for Sri Lankan Businesses
+                Racks we build for businesses
               </h2>
             </div>
             <Link
@@ -406,7 +406,7 @@ export default function HomeClient() {
           <div className="flex items-end justify-between gap-4 mb-7">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gold-accent mb-1">
-                High-Priority Showcase
+                Most asked about
               </p>
               <h2 className="font-heading font-bold text-2xl sm:text-3xl text-charcoal">
                 Gold &amp; Black Metal Display Racks
@@ -433,13 +433,13 @@ export default function HomeClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-5 lg:sticky lg:top-36 space-y-4">
             <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-leaf-dark">
-              Discover Handy Racks
+              About us
             </p>
-            <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-charcoal leading-[1.12] tracking-tight">
-              CUSTOM SPACES BUILT DIFFERENT.
+            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-charcoal leading-[1.15] tracking-tight">
+              A small workshop in Angoda, making shelves since day one.
             </h2>
             <p className="text-sm sm:text-base text-charcoal/75 leading-relaxed">
-              Thoughtful geometry, clean studio finishes, and direct-from-workshop fabrication in Angoda — designed for both modern homes and standout retail showrooms.
+              We cut, weld and finish everything ourselves, so you deal directly with the people making your shelves. No middleman, and we can change any design to fit your space.
             </p>
             <div className="pt-2">
               <Link
@@ -506,7 +506,7 @@ export default function HomeClient() {
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/55 to-charcoal/10" />
             <div className="relative z-10 space-y-1.5">
               <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-[#F3D58A] bg-charcoal/75 backdrop-blur-sm border border-[#F3D58A]/30 px-3 py-1 rounded-full">
-                Home Upgrade
+                Homes
               </span>
               <h3 className="font-heading font-bold text-2xl">
                 Living Room &amp; Kitchen Shelving
@@ -531,7 +531,7 @@ export default function HomeClient() {
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/55 to-charcoal/10" />
             <div className="relative z-10 space-y-1.5">
               <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-[#F3D58A] bg-charcoal/75 backdrop-blur-sm border border-[#F3D58A]/30 px-3 py-1 rounded-full">
-                Retail Collection
+                Shops
               </span>
               <h3 className="font-heading font-bold text-2xl">
                 Boutique &amp; Showroom Display Racks
@@ -549,10 +549,10 @@ export default function HomeClient() {
         {/* Materials Card */}
         <div className="lg:col-span-5 bg-white border border-soft-beige rounded-3xl p-6 sm:p-8 space-y-5">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-natural-oak">
-            Materials &amp; Swatches
+            Colours
           </p>
           <h2 className="font-heading font-bold text-2xl text-charcoal">
-            Select Your Finish
+            Pick a finish
           </h2>
           <div className="flex flex-wrap gap-2.5">
             {Object.values(FINISH_SWATCHES).map((swatch) => (
@@ -598,10 +598,10 @@ export default function HomeClient() {
         {/* FAQ Card */}
         <div className="lg:col-span-7 bg-white border border-soft-beige rounded-3xl p-6 sm:p-8">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-natural-oak mb-1">
-            Common Questions
+            Questions
           </p>
           <h2 className="font-heading font-bold text-2xl text-charcoal mb-5">
-            Frequently Asked Questions
+            Things people usually ask
           </h2>
           <div className="divide-y divide-soft-beige">
             {FAQS.map((faq, idx) => (
@@ -636,10 +636,10 @@ export default function HomeClient() {
           <div className="space-y-3 max-w-xl">
             <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-leaf-light">
               <WhatsAppIcon className="w-5 h-5" />
-              Direct Workshop Support
+              Talk to us directly
             </span>
             <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-white">
-              Order &amp; Quote Instantly on WhatsApp
+              Get a price on WhatsApp
             </h2>
             <p className="text-sm text-white/85 leading-relaxed">
               Send your measurements, room sketch, or commercial showroom requirements directly to Handy Racks ({BUSINESS_INFO.whatsappDisplay}).

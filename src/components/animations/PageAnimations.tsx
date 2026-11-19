@@ -17,7 +17,7 @@ type Job = { prep?: () => void; play: (delay: number) => void };
  *
  *  - Section headings (h2): line-by-line masked text reveal (SplitText)
  *  - Card titles (h3): word reveal
- *  - Eyebrow labels: scramble-decode
+ *  - Eyebrow labels: static
  *  - Accent rules: draw in from the left
  *  - Card grids (and mobile auto-scroll product rows): staggered rise-in
  *  - Card icons: pop in
@@ -89,9 +89,9 @@ export function PageAnimations() {
       all<HTMLElement>("h2").forEach((h) =>
         jobs.set(h, {
           play: () => {
-            const split = SplitText.create(h, { type: "lines,words,chars", mask: "lines" });
+            const split = SplitText.create(h, { type: "lines", mask: "lines" });
             splits.push(split);
-            gsap.from(split.chars, { yPercent: 110, opacity: 0, rotate: 4, duration: 0.8, stagger: 0.016, ease: "expo.out" });
+            gsap.from(split.lines, { yPercent: 100, duration: 0.7, stagger: 0.08, ease: "power3.out" });
           },
         }),
       );
@@ -100,32 +100,12 @@ export function PageAnimations() {
       all<HTMLElement>("h3").forEach((h) =>
         jobs.set(h, {
           play: (delay) => {
-            const split = SplitText.create(h, { type: "words", mask: "words" });
-            splits.push(split);
-            gsap.from(split.words, { yPercent: 100, duration: 0.7, stagger: 0.05, delay, ease: "power3.out" });
+            gsap.from(h, { opacity: 0, y: 8, duration: 0.5, delay, ease: "power2.out" });
           },
         }),
       );
 
-      // 3. Eyebrow labels — scramble decode
-      all<HTMLElement>('[class*="tracking-[0.18em]"], [class*="tracking-[0.2em]"]')
-        .filter((el) => el.children.length === 0 && (el.textContent ?? "").trim().length > 0)
-        .forEach((el) =>
-          jobs.set(el, {
-            play: () => {
-              const finalText = (el.textContent ?? "").trim();
-              el.style.minWidth = `${el.offsetWidth}px`;
-              gsap.to(el, {
-                duration: 1.2,
-                scrambleText: { text: finalText, chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", speed: 0.5, revealDelay: 0.15 },
-                onComplete: () => {
-                  el.textContent = finalText;
-                  el.style.minWidth = "";
-                },
-              });
-            },
-          }),
-        );
+      // 3. Eyebrow labels: left static (a scramble effect felt gimmicky for this brand).
 
       // 4. Accent rules
       all<HTMLElement>('span[class*="h-[2px]"]').forEach((el) =>
@@ -142,8 +122,8 @@ export function PageAnimations() {
         .filter((el) => (el.parentElement?.children.length ?? 0) >= 3)
         .forEach((el) =>
           jobs.set(el, {
-            prep: () => gsap.set(el, { opacity: 0, y: 40 }),
-            play: (delay) => gsap.to(el, { opacity: 1, y: 0, duration: 0.7, delay, ease: "power3.out", clearProps: "transform" }),
+            prep: () => gsap.set(el, { opacity: 0, y: 20 }),
+            play: (delay) => gsap.to(el, { opacity: 1, y: 0, duration: 0.6, delay, ease: "power2.out", clearProps: "transform" }),
           }),
         );
 
@@ -159,8 +139,8 @@ export function PageAnimations() {
       // 6. Card icons — pop in
       all<HTMLElement>('[class*="rounded-xl"][class*="bg-[#F6F4EF]"]').forEach((el) =>
         jobs.set(el, {
-          prep: () => gsap.set(el, { scale: 0.4, rotate: -15, opacity: 0 }),
-          play: (delay) => gsap.to(el, { scale: 1, rotate: 0, opacity: 1, duration: 0.7, delay, ease: "back.out(2)" }),
+          prep: () => gsap.set(el, { opacity: 0 }),
+          play: (delay) => gsap.to(el, { opacity: 1, duration: 0.5, delay }),
         }),
       );
 
