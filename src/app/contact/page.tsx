@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { MapPin, Phone, Mail, MessageCircle, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Mail, ExternalLink } from "lucide-react";
 import { BUSINESS_INFO } from "@/data/business";
 import CustomQuoteForm from "@/components/CustomQuoteForm";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -58,7 +59,7 @@ export default function ContactPage() {
             </div>
 
             <div className="flex items-start gap-3">
-              <MessageCircle className="w-5 h-5 text-brand-green shrink-0 mt-0.5" />
+              <WhatsAppIcon className="w-6 h-6" />
               <div>
                 <p className="font-semibold text-charcoal">WhatsApp</p>
                 <a

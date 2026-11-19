@@ -11,7 +11,6 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronDown,
-  MessageCircle,
   Ruler,
   Palette,
   Building2,
@@ -27,6 +26,8 @@ import {
 } from "@/data/products";
 import { BUSINESS_INFO, buildWhatsAppUrl } from "@/data/business";
 import ProductCard from "./ProductCard";
+import WhatsAppIcon from "./WhatsAppIcon";
+import AutoScrollRow from "./AutoScrollRow";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,11 +67,14 @@ const HERO_SLIDES = [
   },
 ];
 
+// Trust strip renders icons at w-4; the WhatsApp logo reads better a bit larger.
+const TrustWhatsAppIcon = (_props: { className?: string }) => <WhatsAppIcon className="w-7 h-7" />;
+
 const TRUST_FEATURES = [
   { icon: Ruler, title: "Custom Dimensions", desc: "Built to your exact wall or floor size" },
   { icon: Palette, title: "Curated Finishes", desc: "Oak, Teak, White, Black & Gold Metal" },
   { icon: Building2, title: "Home & Commercial", desc: "Apartments to full retail showrooms" },
-  { icon: MessageCircle, title: "Instant WhatsApp", desc: "Direct quotations at +94 70 704 8888" },
+  { icon: TrustWhatsAppIcon, title: "Instant WhatsApp", desc: "Direct quotations at +94 70 704 8888" },
   { icon: Truck, title: "Angoda Workshop", desc: "Crafted locally in Sri Lanka" },
 ];
 
@@ -222,7 +226,7 @@ export default function HomeClient() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-charcoal/80 backdrop-blur-md border border-white/30 hover:border-[#25D366] text-white px-6 py-3.5 rounded-full text-sm font-semibold transition-colors"
                 >
-                  <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                  <WhatsAppIcon className="w-5 h-5" />
                   WhatsApp Quote
                 </a>
               </div>
@@ -368,11 +372,11 @@ export default function HomeClient() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <AutoScrollRow>
             {residentialCatalogue.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
-          </div>
+          </AutoScrollRow>
         </div>
       </section>
 
@@ -440,11 +444,11 @@ export default function HomeClient() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <AutoScrollRow>
             {commercialShowcase.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
-          </div>
+          </AutoScrollRow>
         </div>
       </section>
 
@@ -655,7 +659,7 @@ export default function HomeClient() {
         <div className="bg-leaf-gradient-dark text-white rounded-3xl p-8 sm:p-12 shadow-lg flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
           <div className="space-y-3 max-w-xl">
             <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-leaf-light">
-              <MessageCircle className="w-4 h-4" />
+              <WhatsAppIcon className="w-5 h-5" />
               Direct Workshop Support
             </span>
             <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-white">
@@ -680,7 +684,7 @@ export default function HomeClient() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1fb857] text-white transition-colors px-6 py-3.5 rounded-full text-sm font-semibold"
             >
-              <MessageCircle className="w-4 h-4" />
+              <WhatsAppIcon className="w-6 h-6" />
               Chat on WhatsApp
             </a>
             <a

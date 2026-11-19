@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { MessageCircle } from "lucide-react";
 import { buildWhatsAppUrl } from "@/data/business";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 export default function FloatingWhatsApp() {
   const url = buildWhatsAppUrl(
@@ -15,11 +15,26 @@ export default function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Handy Racks on WhatsApp"
-      className="fixed bottom-5 right-5 z-40 flex items-center gap-2.5 bg-[#25D366] text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal"
+      className="group fixed bottom-5 right-5 z-40 flex items-center gap-3 focus:outline-none"
     >
-      <MessageCircle className="w-5 h-5 fill-current" />
-      <span className="text-xs sm:text-sm font-semibold hidden sm:inline">
+      {/* Label pill (desktop / tablet) */}
+      <span className="hidden sm:inline-flex items-center bg-white text-charcoal text-sm font-semibold px-4 py-2 rounded-full shadow-lg border border-black/5 transition-transform duration-200 group-hover:-translate-x-1">
         Chat on WhatsApp
+      </span>
+
+      {/* Logo with pulse rings */}
+      <span className="relative flex w-14 h-14 sm:w-16 sm:h-16 items-center justify-center">
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 rounded-full bg-[#25D366] opacity-60 motion-safe:animate-wa-pulse"
+        />
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 rounded-full bg-[#25D366] opacity-60 motion-safe:animate-wa-pulse [animation-delay:1s]"
+        />
+        <span className="relative rounded-full shadow-xl transition-transform duration-200 group-hover:scale-110 group-focus-visible:ring-4 group-focus-visible:ring-charcoal/40">
+          <WhatsAppIcon className="w-14 h-14 sm:w-16 sm:h-16" />
+        </span>
       </span>
     </a>
   );

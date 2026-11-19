@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { MessageCircle } from "lucide-react";
 import { buildWhatsAppUrl } from "@/data/business";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 export default function CommercialEnquiryForm() {
   const [businessName, setBusinessName] = useState("");
@@ -178,7 +178,7 @@ export default function CommercialEnquiryForm() {
         type="submit"
         className="w-full inline-flex items-center justify-center gap-2.5 bg-charcoal text-warm-ivory hover:bg-natural-oak transition-colors py-3.5 px-6 text-sm font-semibold"
       >
-        <MessageCircle className="w-4 h-4 text-brand-green" />
+        <WhatsAppIcon className="w-6 h-6" />
         Request Commercial Quote on WhatsApp
       </button>
     </form>

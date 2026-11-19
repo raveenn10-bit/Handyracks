@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { MessageCircle, Upload, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Upload, AlertCircle, CheckCircle2 } from "lucide-react";
 import { buildWhatsAppUrl, formatCustomQuoteMessage } from "@/data/business";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 const PRODUCT_TYPES = [
   "Floating Shelf",
@@ -299,7 +300,7 @@ export default function CustomQuoteForm({
         type="submit"
         className="w-full inline-flex items-center justify-center gap-2.5 bg-charcoal text-warm-ivory hover:bg-natural-oak transition-colors py-3.5 px-6 text-sm font-semibold tracking-wide"
       >
-        <MessageCircle className="w-4 h-4 text-brand-green" />
+        <WhatsAppIcon className="w-6 h-6" />
         Send Custom Quotation via WhatsApp
       </button>
     </form>

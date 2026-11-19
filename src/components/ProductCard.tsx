@@ -3,9 +3,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MessageCircle, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Product } from "@/data/products";
 import { buildWhatsAppUrl } from "@/data/business";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 interface ProductCardProps {
   product: Product;
@@ -115,9 +116,9 @@ export default function ProductCard({ product }: ProductCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Request quote for ${product.name} on WhatsApp`}
-              className="w-10 h-10 shrink-0 inline-flex items-center justify-center rounded-xl bg-[#25D366] hover:bg-[#1fb857] text-white transition-colors"
+              className="w-10 h-10 shrink-0 inline-flex items-center justify-center rounded-full shadow-sm hover:scale-110 hover:shadow-md transition-transform"
             >
-              <MessageCircle className="w-4 h-4" />
+              <WhatsAppIcon className="w-10 h-10" />
             </a>
           </div>
         </div>

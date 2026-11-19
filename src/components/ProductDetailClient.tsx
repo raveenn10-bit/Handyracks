@@ -7,7 +7,6 @@ import {
   ChevronRight,
   Maximize2,
   X,
-  MessageCircle,
   Check,
   Ruler,
   ShieldAlert,
@@ -16,6 +15,8 @@ import { Product } from "@/data/products";
 import { buildWhatsAppUrl } from "@/data/business";
 import TechnicalDiagram from "./TechnicalDiagram";
 import ProductCard from "./ProductCard";
+import WhatsAppIcon from "./WhatsAppIcon";
+import AutoScrollRow from "./AutoScrollRow";
 
 interface ProductDetailClientProps {
   product: Product;
@@ -328,7 +329,7 @@ export default function ProductDetailClient({
             rel="noopener noreferrer"
             className="w-full inline-flex items-center justify-center gap-2.5 bg-charcoal text-warm-ivory hover:bg-natural-oak transition-colors py-4 px-6 text-sm font-semibold tracking-wide"
           >
-            <MessageCircle className="w-5 h-5 text-brand-green" />
+            <WhatsAppIcon className="w-6 h-6" />
             Request a Quote on WhatsApp
           </a>
         </div>
@@ -340,11 +341,11 @@ export default function ProductDetailClient({
           <h2 className="font-heading font-bold text-2xl text-charcoal mb-6">
             Related Designs
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <AutoScrollRow bleedClassName="-mx-4 px-4 scroll-px-4">
             {relatedProducts.map((rel) => (
               <ProductCard key={rel.id} product={rel} />
             ))}
-          </div>
+          </AutoScrollRow>
         </section>
       )}
 

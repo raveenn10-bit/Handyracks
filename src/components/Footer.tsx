@@ -1,9 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Phone, Mail, MessageCircle, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Mail, ExternalLink } from "lucide-react";
 import { BUSINESS_INFO } from "@/data/business";
 import { CATEGORIES } from "@/data/products";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 export default function Footer() {
   return (
@@ -141,7 +142,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <MessageCircle className="w-4 h-4 text-brand-green shrink-0" />
+                <WhatsAppIcon className="w-5 h-5" />
                 <a
                   href={BUSINESS_INFO.whatsappBaseUrl}
                   target="_blank"

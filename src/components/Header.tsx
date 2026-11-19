@@ -9,7 +9,6 @@ import {
   X,
   ChevronDown,
   Search,
-  MessageCircle,
   LayoutGrid,
   ArrowRight,
   MapPin,
@@ -17,6 +16,7 @@ import {
 } from "lucide-react";
 import { CATEGORIES } from "@/data/products";
 import { BUSINESS_INFO, buildWhatsAppUrl } from "@/data/business";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 const SECONDARY_LINKS = [
   { href: "/products", label: "Full Catalogue" },
@@ -147,9 +147,9 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp Handy Racks"
-              className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#25D366]/15 text-[#1da851] hover:bg-[#25D366] hover:text-white transition-colors"
+              className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full shadow-sm hover:scale-110 hover:shadow-md transition-transform"
             >
-              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+              <WhatsAppIcon className="w-9 h-9 sm:w-10 sm:h-10" />
             </a>
 
             <button
